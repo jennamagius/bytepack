@@ -12,9 +12,11 @@ mod test {
     use crate as bytepack;
     use crate::BytePack;
 
+    const MYWIDTH: usize = 5;
+
     #[derive(bytepack_derive::BytePack, PartialEq, Debug)]
     struct Split {
-        a: [u8; 5],
+        a: [u8; MYWIDTH],
         b: [u8; 3],
         c: [u8; 2],
     }
