@@ -22,6 +22,10 @@ pub fn byte_pack_derive(input: proc_macro::TokenStream) -> proc_macro::TokenStre
         .map(|field| field.ident.as_ref().unwrap().clone())
         .collect();
 
+    if fieldnames.is_empty() {
+        panic!("BytePack requires at least one field");
+    }
+
     let widths: Vec<syn::Expr> = fields.named.iter().map(|field| match field.ty.clone() {
         syn::Type::Array(x) => {
             x.len
